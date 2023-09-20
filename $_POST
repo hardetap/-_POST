@@ -1,0 +1,38 @@
+<?php
+// Пример анализа данных социологического опроса на PHP
+$questions = array();
+$responses = array();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $question = $_POST["question"];
+    $response = $_POST["response"];
+    array_push($questions, $question);
+    array_push($responses, $response);
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Анализ опроса</title>
+</head>
+<body>
+    <h1>Анализ данных опроса</h1>
+    <form method="post">
+        <label for="question">Введите вопрос:</label>
+        <input type="text" id="question" name="question" required>
+        <label for="response">Введите ответ:</label>
+        <input type="text" id="response" name="response" required>
+        <button type="submit">Добавить</button>
+    </form>
+    <h2>Результаты опроса:</h2>
+    <?php
+    for ($i = 0; $i < count($questions); $i++) {
+        echo "<p>Вопрос: " . $questions[$i] . "</p>";
+        echo "<p>Ответ: " . $responses[$i] . "</p>";
+    }
+    ?>
+</body>
+</html>
